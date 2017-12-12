@@ -20,6 +20,7 @@ with open(Filepath) as csvfile:
 #######################################Split training data into train and validation sets#####################################################
 train_samples, validation_samples = train_test_split(samples, test_size=0.2)
 
+
 ################use Generators as large amounts of data are processed#####################################################
 def generator(samples, batch_size=32):
     num_samples = len(samples)
@@ -39,18 +40,18 @@ def generator(samples, batch_size=32):
                     else:
                         correction = -0.2 #right image
 
-                name = batch_sample[i].split('/')[-1]
-                # print(name)
+                    name = batch_sample[i].split('/')[-1]
+                     # print(name)
 
-                ###########################append images and flipped version from the images in one array####################################
-                center_image = cv2.imread(name)
-                images.append(center_image)
-                images.append(cv2.flip(center_image,1))
-                ###########################append steering values coresponds to the images####################################
-                center_angle = float(batch_sample[3])
-                center_angle = center_angle + correction
-                angles.append(center_angle)
-                angles.append(center_angle*-0.1)
+                     ###########################append images and flipped version from the images in one array####################################
+                    center_image = cv2.imread(name)
+                    images.append(center_image)
+                    images.append(cv2.flip(center_image,1))
+                    ###########################append steering values coresponds to the images####################################
+                    center_angle = float(batch_sample[3])
+                    center_angle = center_angle + correction
+                    angles.append(center_angle)
+                    angles.append(center_angle*-0.1)
         # trim image to only see section with road
         X_train = np.array(images)
         y_train = np.array(angles)
@@ -86,7 +87,7 @@ model.add(Dense(1))
 model.compile(loss='mse', optimizer='adam')
 
 with tf.device('/device:GPU:2'):
-    history_object = model.fit_generator(train_generator, samples_per_epoch= len(train_samples), validation_data=validation_generator, nb_val_samples=len(validation_samples), nb_epoch=3)
+    history_object = model.fit_generator(train_generator, samples_per_epoch= len(train_samples), validation_data=validation_generator, nb_val_samples=len(validation_samples), nb_epoch=1)
 model.save('model.h5')
 print(history_object.history.keys())
 print('Loss')
