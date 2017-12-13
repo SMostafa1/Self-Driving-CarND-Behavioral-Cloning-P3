@@ -48,7 +48,7 @@ python drive.py model.h5
 
 ####3. Submission code is usable and readable
 
-The model.py file contains the code for training and saving the convolution neural network. The file shows the pipeline I used for training and validating the model, and it contains comments to explain how the code works.
+The Resubmition.py file contains the code for training and saving the convolution neural network. The file shows the pipeline I used for training and validating the model, and it contains comments to explain how the code works.
 
 ###Model Architecture and Training Strategy
 
@@ -75,7 +75,7 @@ The model used an adam optimizer with mse, so the learning rate was not tuned ma
     * Center image versus steering value 
     * Right image versus steering value + correction value (0.2)
     * Left image versus steering value - correction value (0.2)
-    * flipped image and corresponding steering
+    * flipped images and corresponding steering
 
 ###Model Architecture and Training Strategy
 
@@ -128,11 +128,11 @@ To augment the data sat, I also flipped images and angles thinking that this wou
 ![alt text][image7]
 
 
-After the collection process, I had 8628 number of imags. I then preprocessed this data by :
+After the collection process, I had 18966 * 2 number of imags. I then preprocessed this data by :
 * Lambda layer was used for normalization
 * Images was cropped as well.
 
 
 I finally randomly shuffled the data set and put 20% of the data into a validation set. 
 
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 3 as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 3 as if I increased that number I had overfitting issue. I used an adam optimizer so that manually training the learning rate wasn't necessary.
